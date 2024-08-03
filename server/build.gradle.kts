@@ -26,6 +26,13 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+
+	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+	implementation("org.springframework.data:spring-data-jpa:3.3.2")
+
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql
+	implementation("org.postgresql:postgresql:42.7.3")
+	
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
