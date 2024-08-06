@@ -1,20 +1,23 @@
 package com.building.map.drawing.server.entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Date;
-import java.util.UUID;
 
 @Getter
 @Setter
 public abstract class Base {
-    private Date ModifiedOn;
-    private UUID ModifiedBy;
-    private UUID CreatedBy;
-    private Date CreatedOn;
-    private boolean IsDeleted;
+    private java.time.Instant modifiedOn = java.time.Instant.now();
+
+    @ManyToOne
+    @JoinColumn(name = "modifiedBy")
+    private User modifiedBy;
+
+    @ManyToOne
+    @JoinColumn(name = "createdBy")
+    private User createdBy;
+
+    private java.time.Instant createdOn = java.time.Instant.now();
+
+    private Boolean isDeleted = false;
 }

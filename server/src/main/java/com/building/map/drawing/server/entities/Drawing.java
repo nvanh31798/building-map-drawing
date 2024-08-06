@@ -1,9 +1,6 @@
 package com.building.map.drawing.server.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,4 +13,16 @@ public class Drawing extends Base{
     @Getter
     @Setter
     private UUID id;
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
+    private Boolean editable = true;
+
+    @ManyToOne
+    @JoinColumn(name = "ownerId")
+    private User owner;
+
+    private String resourceURL;
 }
