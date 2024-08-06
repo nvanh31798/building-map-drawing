@@ -1,2 +1,3 @@
 .DS_Store
 client/my-app/node_modules
+server/local.env
