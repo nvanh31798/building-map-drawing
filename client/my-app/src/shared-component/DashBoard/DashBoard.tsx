@@ -4,7 +4,6 @@ import DrawingMapContainer from "../../components/DrawingMapContainer/DrawingMap
 export const DashBoard = () => {
   return (
     <div>
-      <h1>This is Dash Board</h1>
       <div>
         <DrawingMapContainer />
       </div>
