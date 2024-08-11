@@ -1,7 +1,6 @@
 import React from "react";
 import materialList from "../../mock/material-mock.json";
 import { MaterialList } from "../MaterialList/MaterialList";
-import { Material } from "../../core/models/Material";
 
 export const DrawingMenuBar = () => {
 
