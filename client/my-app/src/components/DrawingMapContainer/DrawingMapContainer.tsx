@@ -6,7 +6,7 @@ import { KonvaImage } from "../KonvaImage/KonvaImage";
 
 const DrawingMapContainer = () => {
   const materials = useAppSelector((state) => state.drawing.materials);
-  const [layers, setLayers] = useState<JSX.Element[]>([]);
+  const [items, setItem] = useState<JSX.Element[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -19,14 +19,16 @@ const DrawingMapContainer = () => {
       return;
     }
 
-    const newLayers = materials.map((material) => (
-      <Layer key={material.id}>
-        <KonvaImage key={material.id} url={material.resourceURL} />
-      </Layer>
-    ));
-    setLayers((prev) => {
-      return [...prev, ...newLayers];
+    const newItem = materials.map((material) => {
+      return (
+        <KonvaImage
+          id={material.id}
+          key={material.id}
+          url={material.resourceURL}
+        />
+      );
     });
+    setItem(newItem);
   }, [materials]);
 
   return (
@@ -35,7 +37,7 @@ const DrawingMapContainer = () => {
       width={window.innerWidth}
       height={window.innerHeight}
     >
-      {layers}
+      <Layer>{items}</Layer>
     </Stage>
   );
 };
