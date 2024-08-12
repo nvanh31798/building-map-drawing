@@ -4,16 +4,14 @@ import useImage from "use-image";
 interface KonvaImageProps {
   url: string;
   id: string;
+  onClick?: () => void;
 }
 
-export const KonvaImage = ({ url, id }: KonvaImageProps) => {
+export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
   const [image] = useImage(url);
+  const handleClick = () => {
+    onClick?.();
+  };
 
-  return (
-    <Image
-      onClick={() => console.log("image clicked", id)}
-      draggable
-      image={image}
-    />
-  );
+  return <Image onClick={handleClick} draggable image={image} />;
 };

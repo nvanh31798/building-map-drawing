@@ -3,9 +3,10 @@ import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
 import { useEffect, useState } from "react";
 import { fetchMaterialThunk } from "../../core/thunks/fetchMaterialThunk";
 import { KonvaImage } from "../KonvaImage/KonvaImage";
+import { removeMaterial } from "../../core/slice/drawingSlice";
 
 const DrawingMapContainer = () => {
-  const materials = useAppSelector((state) => state.drawing.materials);
+  const { materials, isDeleting } = useAppSelector((state) => state.drawing);
   const [items, setItem] = useState<JSX.Element[]>([]);
 
   const dispatch = useAppDispatch();
@@ -15,21 +16,33 @@ const DrawingMapContainer = () => {
   }, []);
 
   useEffect(() => {
-    if (!materials || !materials.length) {
+    if (!materials) {
       return;
     }
-
+    const handleItemRemove = (id: string) => {
+      if (!isDeleting) {
+        return;
+      }
+      dispatch(removeMaterial(id));
+    };
     const newItem = materials.map((material) => {
       return (
         <KonvaImage
+          onClick={() => handleItemRemove(material.id)}
           id={material.id}
           key={material.id}
           url={material.resourceURL}
         />
       );
     });
+
+    if (!newItem.length) {
+      setItem([]);
+      return;
+    }
+
     setItem(newItem);
-  }, [materials]);
+  }, [materials, isDeleting]);
 
   return (
     <Stage
