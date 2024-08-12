@@ -1,14 +1,12 @@
-import React from "react";
 import DrawingMapContainer from "../../components/DrawingMapContainer/DrawingMapContainer";
 import { DrawingMenuBar } from "../../components/DrawingMenuBar/DrawingMenuBar";
+import { StageRefProvider } from "../../context/stageRefProvider/StageRefProvider";
 
 export const DashBoard = () => {
   return (
-    <div>
-      <div>
-        <DrawingMenuBar />
-        <DrawingMapContainer />
-      </div>
-    </div>
+    <StageRefProvider>
+      <DrawingMenuBar />
+      <DrawingMapContainer />
+    </StageRefProvider>
   );
 };

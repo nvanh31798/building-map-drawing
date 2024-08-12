@@ -8,7 +8,7 @@ interface KonvaImageProps {
 }
 
 export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
-  const [image] = useImage(url);
+  const [image] = useImage(url, "anonymous");
   const handleClick = () => {
     onClick?.();
   };

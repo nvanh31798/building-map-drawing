@@ -1,14 +1,15 @@
 import { Layer, Stage } from "react-konva";
 import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { fetchMaterialThunk } from "../../core/thunks/fetchMaterialThunk";
 import { KonvaImage } from "../KonvaImage/KonvaImage";
 import { removeMaterial } from "../../core/slice/drawingSlice";
+import { StageRefContext } from "../../context/stageRefContext/StageRefContext";
 
 const DrawingMapContainer = () => {
   const { materials, isDeleting } = useAppSelector((state) => state.drawing);
   const [items, setItem] = useState<JSX.Element[]>([]);
-
+  const stageRef = useContext(StageRefContext);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -49,6 +50,7 @@ const DrawingMapContainer = () => {
       className="m-5 p-5 border-2 bg-red-200"
       width={window.innerWidth}
       height={window.innerHeight}
+      ref={stageRef}
     >
       <Layer>{items}</Layer>
     </Stage>
