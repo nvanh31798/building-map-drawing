@@ -45,6 +45,10 @@ dependencies {
 
 	// OpenAPI (Swagger)
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+
+	// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+	implementation("org.modelmapper:modelmapper:3.2.1")
+
 }
 
 tasks.withType<Test> {

@@ -18,10 +18,4 @@ public class DrawingControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/drawing"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
-
-//    @Test
-//    public void should() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.get("/drawing"))
-//                .andExpect(MockMvcResultMatchers.status().isOk());
-//    }
 }
