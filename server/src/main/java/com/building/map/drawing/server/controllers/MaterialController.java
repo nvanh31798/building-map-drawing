@@ -1,6 +1,6 @@
 package com.building.map.drawing.server.controllers;
 
-import com.building.map.drawing.server.entities.Drawing;
+import com.building.map.drawing.server.entities.Material;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,15 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("drawing")
-public class DrawingController {
+@RequestMapping("material")
+public class MaterialController {
     @GetMapping
-    public ArrayList<Drawing> getDrawing() {
-
-        ArrayList<Drawing> result = new ArrayList<Drawing>();
-
-        result.add(new Drawing());
-
-        return result;
+    public ArrayList<Material> getMaterial () {
+        return new ArrayList<>();
     }
 }
