@@ -5,8 +5,8 @@ import { StageRefProvider } from "../../context/stageRefProvider/StageRefProvide
 export const DashBoard = () => {
   return (
     <StageRefProvider>
-      <DrawingMenuBar />
       <DrawingMapContainer />
+      <DrawingMenuBar />
     </StageRefProvider>
   );
 };

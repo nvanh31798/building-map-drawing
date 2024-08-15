@@ -1,20 +1,16 @@
 import { Layer, Stage } from "react-konva";
 import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
 import { useContext, useEffect, useState } from "react";
-import { fetchMaterialThunk } from "../../core/thunks/fetchMaterialThunk";
 import { KonvaImage } from "../KonvaImage/KonvaImage";
 import { removeMaterial } from "../../core/slice/drawingSlice";
 import { StageRefContext } from "../../context/stageRefContext/StageRefContext";
+import { ImageUpload } from "../ImageUpload/ImageUpload";
 
 const DrawingMapContainer = () => {
   const { materials, isDeleting } = useAppSelector((state) => state.drawing);
   const [items, setItem] = useState<JSX.Element[]>([]);
   const stageRef = useContext(StageRefContext);
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchMaterialThunk());
-  }, []);
 
   useEffect(() => {
     if (!materials) {
@@ -45,16 +41,24 @@ const DrawingMapContainer = () => {
     setItem(newItem);
   }, [materials, isDeleting]);
 
-  return (
-    <Stage
-      className="m-5 p-5 border-2 bg-red-200"
-      width={window.innerWidth}
-      height={window.innerHeight}
-      ref={stageRef}
-    >
-      <Layer>{items}</Layer>
-    </Stage>
-  );
+  const render = () => {
+    if (!materials.length) {
+      return <ImageUpload />;
+    }
+
+    return (
+      <Stage
+        className="m-5 p-5"
+        width={500}
+        height={500}
+        ref={stageRef}
+      >
+        <Layer>{items}</Layer>
+      </Stage>
+    );
+  };
+
+  return <div className="w-50 border-2 rounded-xl">{render()}</div>;
 };
 
 export default DrawingMapContainer;
