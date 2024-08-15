@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { KonvaImage } from "../KonvaImage/KonvaImage";
 import { removeMaterial } from "../../core/slice/drawingSlice";
 import { StageRefContext } from "../../context/stageRefContext/StageRefContext";
-import { ImageUpload } from "../ImageUpload/ImageUpload";
+import { ImageUploadContainer } from "../ImageUploadContainer/ImageUploadContainer";
 
 const DrawingMapContainer = () => {
   const { materials, isDeleting } = useAppSelector((state) => state.drawing);
@@ -43,22 +43,17 @@ const DrawingMapContainer = () => {
 
   const render = () => {
     if (!materials.length) {
-      return <ImageUpload />;
+      return <ImageUploadContainer />;
     }
 
     return (
-      <Stage
-        className="m-5 p-5"
-        width={500}
-        height={500}
-        ref={stageRef}
-      >
+      <Stage className="m-5 p-5" width={500} height={500} ref={stageRef}>
         <Layer>{items}</Layer>
       </Stage>
     );
   };
 
-  return <div className="w-50 border-2 rounded-xl">{render()}</div>;
+  return <div className="w-full border-2 rounded-xl">{render()}</div>;
 };
 
 export default DrawingMapContainer;
