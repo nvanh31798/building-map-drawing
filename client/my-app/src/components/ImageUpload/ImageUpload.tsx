@@ -1,20 +1,35 @@
 import { Button } from "@mui/material";
 import React, { ChangeEvent, useRef } from "react";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+import { useAppDispatch } from "../../core/store/hooks";
+import { addImageURL } from "../../core/slice/imageSlice";
 
 export const ImageUpload = () => {
   const inputFileRef = useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
+
+  const handleFileCommon = (files: FileList | null) => {
+    if (files && files[0]) {
+        const reader = new FileReader();
+  
+        reader.onload = (e) => {
+          dispatch(addImageURL([e.target?.result as string]));
+        };
+  
+        reader.readAsDataURL(files[0]);
+      }
+  };
 
   const handleFileInput = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
-    const droppedFiles = event?.target.files;
-    console.log("dropped", droppedFiles);
+
+    handleFileCommon(event?.target.files)
   };
 
   const handleDropFile = (event: React.DragEvent<HTMLDivElement>): void => {
     event.preventDefault();
-    const droppedFiles = event?.dataTransfer.files;
-    console.log("dropped", droppedFiles);
+
+    handleFileCommon(event?.dataTransfer.files)
   };
 
   const handleFileClicked = () => {
@@ -47,6 +62,7 @@ export const ImageUpload = () => {
       <Button
         sx={{ borderColor: "none" }}
         variant="outlined"
+        color="inherit"
         title="Browse file"
       >
         Browse file

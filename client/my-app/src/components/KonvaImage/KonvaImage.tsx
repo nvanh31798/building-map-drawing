@@ -13,5 +13,12 @@ export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
     onClick?.();
   };
 
-  return <Image onClick={handleClick} draggable image={image} />;
+  return (
+    <Image
+      onClick={handleClick}
+      scale={{ x: .1, y: .1 }}
+      draggable
+      image={image}
+    />
+  );
 };

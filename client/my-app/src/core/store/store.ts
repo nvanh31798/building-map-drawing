@@ -1,9 +1,11 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import drwaingReducer from '../slice/drawingSlice';
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import drwaingReducer from "../slice/drawingSlice";
+import imageReducer from "../slice/imageSlice";
 
 export const store = configureStore({
   reducer: {
     drawing: drwaingReducer,
+    image: imageReducer,
   },
 });
 

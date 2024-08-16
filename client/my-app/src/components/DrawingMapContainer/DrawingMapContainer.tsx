@@ -5,30 +5,29 @@ import { KonvaImage } from "../KonvaImage/KonvaImage";
 import { removeMaterial } from "../../core/slice/drawingSlice";
 import { StageRefContext } from "../../context/stageRefContext/StageRefContext";
 import { ImageUploadContainer } from "../ImageUploadContainer/ImageUploadContainer";
+import { randomUUID } from "crypto";
 
 const DrawingMapContainer = () => {
   const { materials, isDeleting } = useAppSelector((state) => state.drawing);
+  const imageURLs = useAppSelector((state) => state.image.imageURL);
+
   const [items, setItem] = useState<JSX.Element[]>([]);
   const stageRef = useContext(StageRefContext);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!materials) {
+    if (!imageURLs) {
       return;
     }
-    const handleItemRemove = (id: string) => {
-      if (!isDeleting) {
-        return;
-      }
-      dispatch(removeMaterial(id));
-    };
-    const newItem = materials.map((material) => {
+    const handleItemRemove = (id: string) => {};
+
+    const newItem = imageURLs.map((imageURL) => {
       return (
         <KonvaImage
-          onClick={() => handleItemRemove(material.id)}
-          id={material.id}
-          key={material.id}
-          url={material.resourceURL}
+          onClick={() => handleItemRemove(imageURL)}
+          id={imageURL}
+          key={imageURL}
+          url={imageURL}
         />
       );
     });
@@ -39,10 +38,10 @@ const DrawingMapContainer = () => {
     }
 
     setItem(newItem);
-  }, [materials, isDeleting]);
+  }, [imageURLs, isDeleting]);
 
   const render = () => {
-    if (!materials.length) {
+    if (!imageURLs.length) {
       return <ImageUploadContainer />;
     }
 
