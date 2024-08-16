@@ -16,7 +16,8 @@ export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
   return (
     <Image
       onClick={handleClick}
-      scale={{ x: .1, y: .1 }}
+      width={500}
+      height={500}
       draggable
       image={image}
     />
