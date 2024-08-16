@@ -41,7 +41,7 @@ export const ImageUpload = () => {
       onDrop={(e) => handleDropFile(e)}
       onClick={handleFileClicked}
       onDragOver={(event) => event.preventDefault()}
-      className="m-5 border-2 border-dashed rounded-xl content-center items-center flex flex-col h-56 justify-evenly cursor-pointer"
+      className="m-5 border-2 border-dashed rounded-xl content-center items-center h-full flex flex-col justify-evenly cursor-pointer"
     >
       <input
         onChange={(e) => handleFileInput(e)}

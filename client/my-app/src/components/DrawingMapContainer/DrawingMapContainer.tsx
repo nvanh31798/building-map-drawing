@@ -40,19 +40,15 @@ const DrawingMapContainer = () => {
     setItem(newItem);
   }, [imageURLs, isDeleting]);
 
-  const render = () => {
-    if (!imageURLs.length) {
-      return <ImageUploadContainer />;
-    }
+  if (!imageURLs.length) {
+    return <ImageUploadContainer />;
+  }
 
-    return (
-      <Stage className="m-5 p-5" width={500} height={500} ref={stageRef}>
-        <Layer>{items}</Layer>
-      </Stage>
-    );
-  };
-
-  return <div className="w-full border-2 rounded-xl">{render()}</div>;
+  return (
+    <Stage className="rounded-xl" width={500} height={500} ref={stageRef}>
+      <Layer>{items}</Layer>
+    </Stage>
+  );
 };
 
 export default DrawingMapContainer;
