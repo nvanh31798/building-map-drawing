@@ -9,6 +9,10 @@ interface KonvaImageProps {
 
 export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
   const [image] = useImage(url, "anonymous");
+
+  const width = 500;
+  const height = 500;
+
   const handleClick = () => {
     onClick?.();
   };
@@ -16,8 +20,8 @@ export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
   return (
     <Image
       onClick={handleClick}
-      width={500}
-      height={500}
+      width={width}
+      height={height}
       draggable
       image={image}
     />
