@@ -1,5 +1,6 @@
 import { Image } from "react-konva";
 import useImage from "use-image";
+import { useKonvaImage } from "../../hooks/useKonvaImage";
 
 interface KonvaImageProps {
   url: string;
@@ -9,9 +10,12 @@ interface KonvaImageProps {
 
 export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
   const [image] = useImage(url, "anonymous");
-
-  const width = 500;
   const height = 500;
+  const width = 500;
+
+  const { calculateImageScale } = useKonvaImage();
+
+  const scale = calculateImageScale(image?.height, image?.width, height, width);
 
   const handleClick = () => {
     onClick?.();
@@ -21,8 +25,8 @@ export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
     <Image
       className={"object-scale-down"}
       onClick={handleClick}
-      width={Math.floor((image?.height ?? 0) / 12)}
-      height={Math.floor((image?.height ?? 0) / 12)}
+      width={Math.floor((image?.height ?? 0) / scale)}
+      height={Math.floor((image?.height ?? 0) / scale)}
       draggable
       image={image}
     />
