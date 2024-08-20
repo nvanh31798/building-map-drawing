@@ -45,7 +45,7 @@ const DrawingMapContainer = () => {
   }
 
   return (
-    <Stage className="rounded-xl" width={500} height={500} ref={stageRef}>
+    <Stage className="rounded-xl border-2" width={520} height={520} ref={stageRef}>
       <Layer>{items}</Layer>
     </Stage>
   );
