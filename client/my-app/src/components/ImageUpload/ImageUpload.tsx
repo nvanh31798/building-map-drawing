@@ -46,8 +46,8 @@ export const ImageUpload = () => {
       <input
         onChange={(e) => handleFileInput(e)}
         type="file"
-        id="file"
         ref={inputFileRef}
+        accept="image/*" 
         style={{ display: "none" }}
       />
       <CloudUploadOutlinedIcon />

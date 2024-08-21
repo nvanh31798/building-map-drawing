@@ -6,11 +6,13 @@ import { fetchMaterialThunk } from "../thunks/fetchMaterialThunk";
 export interface ImageState {
   status: ActionStatusEnum;
   imageURL: string[];
+  images: File[];
 }
 
 const initialState: ImageState = {
   status: ActionStatusEnum.Idle,
   imageURL: [],
+  images: []
 };
 
 export const imageSlice = createSlice({
@@ -24,6 +26,9 @@ export const imageSlice = createSlice({
       state.imageURL = state.imageURL.filter(
         (imageURL) => imageURL !== action.payload,
       );
+    },
+    addImage: (state, action: PayloadAction<File>) => {
+      state.images = [...state.images, action.payload];
     },
   },
   extraReducers: {},
