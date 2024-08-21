@@ -25,8 +25,8 @@ export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
     <Image
       className={"object-scale-down"}
       onClick={handleClick}
-      width={Math.floor((image?.width ?? 0) / scale)}
-      height={Math.floor((image?.height ?? 0) / scale)}
+      width={Math.round((image?.width ?? 0) / scale)}
+      height={Math.round((image?.height ?? 0) / scale)}
       draggable
       image={image}
     />

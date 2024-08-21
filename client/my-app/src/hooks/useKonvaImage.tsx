@@ -31,9 +31,9 @@ export const useKonvaImage = () => {
       return scale;
     }
 
-    const widthScale = Math.floor(width / scaledWidth);
-    const heightScale = Math.floor(height / scaledHeight);
-    scale = widthScale > heightScale ? widthScale : height;
+    const widthScale = width / scaledWidth;
+    const heightScale = height / scaledHeight;
+    scale = widthScale > heightScale ? widthScale : heightScale;
 
     return scale;
   };
