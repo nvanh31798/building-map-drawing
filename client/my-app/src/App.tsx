@@ -6,7 +6,6 @@ import { NavBar } from "./shared-component/NavBar/NavBar";
 function App() {
   return (
     <AppContainer>
-      <NavBar />
       <DashBoard />
     </AppContainer>
   );

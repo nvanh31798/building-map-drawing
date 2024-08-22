@@ -2,7 +2,8 @@ import { Button } from "@mui/material";
 import React, { ChangeEvent, useRef } from "react";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import { useAppDispatch } from "../../core/store/hooks";
-import { addImage, addImageURL } from "../../core/slice/imageSlice";
+import { addImage } from "../../core/slice/imageSlice";
+import { ImageFile } from "../../core/models/ImageFile";
 
 export const ImageUpload = () => {
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -11,12 +12,19 @@ export const ImageUpload = () => {
   const handleFileCommon = (files: FileList | null) => {
     if (files && files[0]) {
       const reader = new FileReader();
+      const file = files[0];
       reader.onload = (e) => {
         const imageUrl = e.target?.result as string;
-        dispatch(addImage({ ...files[0], url: imageUrl }));
+        dispatch(
+          addImage({
+            name: file.name,
+            url: imageUrl,
+            lastModified: file.lastModified,
+          } as ImageFile),
+        );
       };
 
-      reader.readAsDataURL(files[0]);
+      reader.readAsDataURL(file);
     }
   };
 
