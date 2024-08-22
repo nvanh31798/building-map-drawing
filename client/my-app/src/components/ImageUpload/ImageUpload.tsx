@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import React, { ChangeEvent, useRef } from "react";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import { useAppDispatch } from "../../core/store/hooks";
-import { addImageURL } from "../../core/slice/imageSlice";
+import { addImage, addImageURL } from "../../core/slice/imageSlice";
 
 export const ImageUpload = () => {
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -10,26 +10,26 @@ export const ImageUpload = () => {
 
   const handleFileCommon = (files: FileList | null) => {
     if (files && files[0]) {
-        const reader = new FileReader();
-  
-        reader.onload = (e) => {
-          dispatch(addImageURL([e.target?.result as string]));
-        };
-  
-        reader.readAsDataURL(files[0]);
-      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const imageUrl = e.target?.result as string;
+        dispatch(addImage({ ...files[0], url: imageUrl }));
+      };
+
+      reader.readAsDataURL(files[0]);
+    }
   };
 
   const handleFileInput = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
 
-    handleFileCommon(event?.target.files)
+    handleFileCommon(event?.target.files);
   };
 
   const handleDropFile = (event: React.DragEvent<HTMLDivElement>): void => {
     event.preventDefault();
 
-    handleFileCommon(event?.dataTransfer.files)
+    handleFileCommon(event?.dataTransfer.files);
   };
 
   const handleFileClicked = () => {
@@ -47,7 +47,7 @@ export const ImageUpload = () => {
         onChange={(e) => handleFileInput(e)}
         type="file"
         ref={inputFileRef}
-        accept="image/*" 
+        accept="image/*"
         style={{ display: "none" }}
       />
       <CloudUploadOutlinedIcon />

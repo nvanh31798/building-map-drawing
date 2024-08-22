@@ -2,17 +2,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ActionStatusEnum } from "../const/ActionStatusEnum";
 import { Material } from "../models/Material";
 import { fetchMaterialThunk } from "../thunks/fetchMaterialThunk";
+import { ImageFile } from "../models/ImageFile";
 
 export interface ImageState {
   status: ActionStatusEnum;
   imageURL: string[];
-  images: File[];
+  images: ImageFile[];
 }
 
 const initialState: ImageState = {
   status: ActionStatusEnum.Idle,
   imageURL: [],
-  images: []
+  images: [],
 };
 
 export const imageSlice = createSlice({
@@ -27,13 +28,13 @@ export const imageSlice = createSlice({
         (imageURL) => imageURL !== action.payload,
       );
     },
-    addImage: (state, action: PayloadAction<File>) => {
+    addImage: (state, action: PayloadAction<ImageFile>) => {
       state.images = [...state.images, action.payload];
     },
   },
   extraReducers: {},
 });
 
-export const { addImageURL, removeImageURL } = imageSlice.actions;
+export const { addImageURL, removeImageURL, addImage } = imageSlice.actions;
 
 export default imageSlice.reducer;
