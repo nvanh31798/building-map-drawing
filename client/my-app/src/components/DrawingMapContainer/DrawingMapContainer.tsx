@@ -9,25 +9,25 @@ import { randomUUID } from "crypto";
 
 const DrawingMapContainer = () => {
   const { materials, isDeleting } = useAppSelector((state) => state.drawing);
-  const imageURLs = useAppSelector((state) => state.image.imageURL);
+  const imageFiles = useAppSelector((state) => state.image.images);
 
   const [items, setItem] = useState<JSX.Element[]>([]);
   const stageRef = useContext(StageRefContext);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!imageURLs) {
+    if (!imageFiles || !imageFiles.length) {
       return;
     }
     const handleItemRemove = (id: string) => {};
 
-    const newItem = imageURLs.map((imageURL) => {
+    const newItem = imageFiles.map((file) => {
       return (
         <KonvaImage
-          onClick={() => handleItemRemove(imageURL)}
-          id={imageURL}
-          key={imageURL}
-          url={imageURL}
+          onClick={() => handleItemRemove(file.url)}
+          id={file.url}
+          key={file.url}
+          url={file.url}
         />
       );
     });
@@ -38,9 +38,9 @@ const DrawingMapContainer = () => {
     }
 
     setItem(newItem);
-  }, [imageURLs, isDeleting]);
+  }, [imageFiles.length, isDeleting]);
 
-  if (!imageURLs.length) {
+  if (!imageFiles.length) {
     return <ImageUploadContainer />;
   }
 
