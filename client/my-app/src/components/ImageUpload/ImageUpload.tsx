@@ -1,43 +1,23 @@
 import { Button } from "@mui/material";
 import React, { ChangeEvent, useRef } from "react";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
-import { useAppDispatch } from "../../core/store/hooks";
-import { addImage } from "../../core/slice/imageSlice";
-import { ImageFile } from "../../core/models/ImageFile";
+import { HiddenInput } from "../../shared-component/HiddenInput/HiddenInput";
+import { useFileInput } from "../../hooks/useFileInput";
 
 export const ImageUpload = () => {
   const inputFileRef = useRef<HTMLInputElement>(null);
-  const dispatch = useAppDispatch();
-
-  const handleFileCommon = (files: FileList | null) => {
-    if (files && files[0]) {
-      const reader = new FileReader();
-      const file = files[0];
-      reader.onload = (e) => {
-        const imageUrl = e.target?.result as string;
-        dispatch(
-          addImage({
-            name: file.name,
-            url: imageUrl,
-            lastModified: file.lastModified,
-          } as ImageFile),
-        );
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
+  const { handleAddImageFile } = useFileInput();
 
   const handleFileInput = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
 
-    handleFileCommon(event?.target.files);
+    handleAddImageFile(event?.target.files);
   };
 
   const handleDropFile = (event: React.DragEvent<HTMLDivElement>): void => {
     event.preventDefault();
 
-    handleFileCommon(event?.dataTransfer.files);
+    handleAddImageFile(event?.dataTransfer.files);
   };
 
   const handleFileClicked = () => {
@@ -51,12 +31,9 @@ export const ImageUpload = () => {
       onDragOver={(event) => event.preventDefault()}
       className="m-5 border-2 border-dashed rounded-xl content-center items-center h-full flex flex-col justify-evenly cursor-pointer"
     >
-      <input
-        onChange={(e) => handleFileInput(e)}
-        type="file"
-        ref={inputFileRef}
-        accept="image/*"
-        style={{ display: "none" }}
+      <HiddenInput
+        handleChange={(e) => handleFileInput(e)}
+        inputRef={inputFileRef}
       />
       <CloudUploadOutlinedIcon />
       <div>

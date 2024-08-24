@@ -6,7 +6,7 @@ import { ImageListItem } from "../ImageListItem/ImageListItem";
 export const ImageList = () => {
   const imageFiles = useAppSelector((state) => state.image.images);
   return (
-    <div>
+    <div className="flex flex-col">
       {imageFiles.map((file) => (
         <ImageListItem image={file}/>
       ))}

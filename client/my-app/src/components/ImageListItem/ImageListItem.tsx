@@ -6,6 +6,6 @@ interface ImageListItemProps {
 }
 
 export const ImageListItem = ({ image }: ImageListItemProps) => {
-  console.log("image name", image);
+
   return <div>{image.name}</div>;
 };
