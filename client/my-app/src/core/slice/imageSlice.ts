@@ -29,12 +29,22 @@ export const imageSlice = createSlice({
       );
     },
     addImage: (state, action: PayloadAction<ImageFile>) => {
-      state.images = [...state.images, action.payload];
+      const newImage: ImageFile = {
+        ...action.payload,
+        id: state.images.length,
+      };
+      state.images = [...state.images, newImage];
+    },
+    removeImage: (state, action: PayloadAction<number>) => {
+      state.images = state.images.filter(
+        (image) => image.id !== action.payload,
+      );
     },
   },
   extraReducers: {},
 });
 
-export const { addImageURL, removeImageURL, addImage } = imageSlice.actions;
+export const { addImageURL, removeImageURL, addImage, removeImage } =
+  imageSlice.actions;
 
 export default imageSlice.reducer;
