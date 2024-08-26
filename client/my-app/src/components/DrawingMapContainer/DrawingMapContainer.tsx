@@ -1,19 +1,16 @@
 import { Layer, Stage } from "react-konva";
-import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
+import { useAppSelector } from "../../core/store/hooks";
 import { useContext, useEffect, useState } from "react";
 import { KonvaImage } from "../KonvaImage/KonvaImage";
-import { removeMaterial } from "../../core/slice/drawingSlice";
 import { StageRefContext } from "../../context/stageRefContext/StageRefContext";
 import { ImageUploadContainer } from "../ImageUploadContainer/ImageUploadContainer";
-import { randomUUID } from "crypto";
 
 const DrawingMapContainer = () => {
-  const { materials, isDeleting } = useAppSelector((state) => state.drawing);
+  const { isDeleting } = useAppSelector((state) => state.drawing);
   const imageFiles = useAppSelector((state) => state.image.images);
 
   const [items, setItem] = useState<JSX.Element[]>([]);
   const stageRef = useContext(StageRefContext);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!imageFiles || !imageFiles.length) {
