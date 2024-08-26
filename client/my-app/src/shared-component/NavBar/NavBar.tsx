@@ -16,7 +16,7 @@ export const NavBar = () => {
   };
 
   return (
-    <div className="border p-5 mr-5 flex flex-col content-center gap-2 w-96">
+    <div className="shadow-md p-5 mr-5 flex flex-col content-center gap-2 w-96">
       <h1 className="text-3xl font-bold underline"></h1>
       <ImageList />
       <HiddenInput
@@ -24,10 +24,10 @@ export const NavBar = () => {
         inputRef={inputFileRef}
       />
 
-      {!images.length && <p className="text-sm font-thin">No image uploaded</p>}
+      {!images.length && <p className="text-center text-sm font-thin">No image uploaded</p>}
       <div className="mx-auto mt-5">
         <IconButton onClick={handleFileClicked}>
-          <AddCircleOutlineIcon></AddCircleOutlineIcon>
+          <AddCircleOutlineIcon color="secondary" fontSize="large"></AddCircleOutlineIcon>
         </IconButton>
       </div>
     </div>

@@ -47,7 +47,7 @@ const DrawingMapContainer = () => {
   }
 
   return (
-    <Stage className="border-2" width={800} height={520} ref={stageRef}>
+    <Stage className="shadow-lg" width={800} height={520} ref={stageRef}>
       <Layer>{items}</Layer>
     </Stage>
   );
