@@ -15,8 +15,8 @@ export const ImageListItem = ({ image }: ImageListItemProps) => {
   };
 
   return (
-    <div className="flex items-center mt-5 p-3 shadow-lg justify-between">
-      <div className="flex items-center gap-5">
+    <div draggable className="flex items-center mt-5 p-3 shadow-md justify-between">
+      <div className="flex items-center gap-3 w-64">
         <img
           className="shadow-md"
           width={50}

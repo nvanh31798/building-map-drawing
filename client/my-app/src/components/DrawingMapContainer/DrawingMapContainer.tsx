@@ -25,6 +25,8 @@ const DrawingMapContainer = () => {
       return (
         <KonvaImage
           onClick={() => handleItemRemove(file.url)}
+          width={stageRef?.current?.width()}
+          height={stageRef?.current?.height()}
           id={file.url}
           key={file.url}
           url={file.url}
@@ -45,7 +47,7 @@ const DrawingMapContainer = () => {
   }
 
   return (
-    <Stage className="rounded-xl border-2" width={520} height={520} ref={stageRef}>
+    <Stage className="border-2" width={800} height={520} ref={stageRef}>
       <Layer>{items}</Layer>
     </Stage>
   );

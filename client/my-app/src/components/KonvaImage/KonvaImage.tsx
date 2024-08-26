@@ -5,13 +5,19 @@ import { useKonvaImage } from "../../hooks/useKonvaImage";
 interface KonvaImageProps {
   url: string;
   id: string;
+  height?: number;
+  width?: number;
   onClick?: () => void;
 }
 
-export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
+export const KonvaImage = ({
+  url,
+  id,
+  onClick,
+  height = 500,
+  width = 500,
+}: KonvaImageProps) => {
   const [image] = useImage(url, "anonymous");
-  const height = 500;
-  const width = 500;
 
   const { calculateImageScale } = useKonvaImage();
 
@@ -23,6 +29,7 @@ export const KonvaImage = ({ url, id, onClick }: KonvaImageProps) => {
 
   return (
     <Image
+      id={id}
       className={"object-scale-down"}
       onClick={handleClick}
       width={Math.round((image?.width ?? 0) / scale)}

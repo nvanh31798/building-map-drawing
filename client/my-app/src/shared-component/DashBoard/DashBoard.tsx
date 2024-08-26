@@ -9,7 +9,7 @@ export const DashBoard = () => {
     <StageRefProvider>
       <NavBar />
       <DrawingMapContainer />
-      <DrawingMenuBar />
+      {/* <DrawingMenuBar /> */}
     </StageRefProvider>
   );
 };
