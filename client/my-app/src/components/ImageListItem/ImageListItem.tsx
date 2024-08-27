@@ -1,4 +1,3 @@
-import React from "react";
 import { ImageFile } from "../../core/models/ImageFile";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";

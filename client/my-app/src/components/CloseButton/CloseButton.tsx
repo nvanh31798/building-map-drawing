@@ -1,6 +1,5 @@
 import { IconButton } from "@mui/material";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import React from "react";
 
 export const CloseButton = () => {
   return (

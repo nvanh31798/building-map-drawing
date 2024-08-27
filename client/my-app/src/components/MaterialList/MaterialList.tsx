@@ -1,4 +1,3 @@
-import React from "react";
 import { Material } from "../../core/models/Material";
 import { MaterialItem } from "../MaterialItem/MaterialItem";
 

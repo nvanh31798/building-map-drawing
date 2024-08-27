@@ -1,5 +1,3 @@
-import React from "react";
-import { ImageFile } from "../../core/models/ImageFile";
 import { useAppSelector } from "../../core/store/hooks";
 import { ImageListItem } from "../ImageListItem/ImageListItem";
 
