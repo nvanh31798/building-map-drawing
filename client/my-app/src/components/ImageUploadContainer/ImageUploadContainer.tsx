@@ -5,7 +5,10 @@ import { ImageUpload } from "../ImageUpload/ImageUpload";
 
 export const ImageUploadContainer = () => {
   return (
-    <div style={{height: 520}} className="border-2 rounded-xl flex flex-col w-full h-96">
+    <div
+      style={{ height: 520, width: 800 }}
+      className="border-2 rounded-xl flex flex-col w-full h-96"
+    >
       <div className="flex relative p-2 content-center items-center m-3">
         <div className="border-2 p-3 rounded-full mr-5">
           <CloudUploadOutlinedIcon />
