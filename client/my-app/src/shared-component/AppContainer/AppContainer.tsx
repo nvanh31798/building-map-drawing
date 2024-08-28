@@ -4,5 +4,5 @@ interface AppContainerProps {
 }
 
 export const AppContainer = ({ children }: AppContainerProps) => {
-  return <div className="flex p-5">{children}</div>;
+  return <div className="flex mt-10 justify-center">{children}</div>;
 };
