@@ -1,6 +1,7 @@
 export interface ImageFile extends File {
-  id: number;
+  id: string;
   url: string;
   name: string;
+  order: number;
   lastModified: number;
 }

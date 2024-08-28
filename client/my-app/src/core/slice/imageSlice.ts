@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ActionStatusEnum } from "../const/ActionStatusEnum";
-import { Material } from "../models/Material";
-import { fetchMaterialThunk } from "../thunks/fetchMaterialThunk";
 import { ImageFile } from "../models/ImageFile";
+import { v4 as uuid } from 'uuid'
 
 export interface ImageState {
   status: ActionStatusEnum;
@@ -31,11 +30,12 @@ export const imageSlice = createSlice({
     addImage: (state, action: PayloadAction<ImageFile>) => {
       const newImage: ImageFile = {
         ...action.payload,
-        id: state.images.length,
+        id: uuid(),
+        order: state.images.length,
       };
       state.images = [...state.images, newImage];
     },
-    removeImage: (state, action: PayloadAction<number>) => {
+    removeImage: (state, action: PayloadAction<string>) => {
       state.images = state.images.filter(
         (image) => image.id !== action.payload,
       );
