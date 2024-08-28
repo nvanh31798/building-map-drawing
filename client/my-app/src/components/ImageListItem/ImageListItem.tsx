@@ -14,15 +14,19 @@ export const ImageListItem = ({ image }: ImageListItemProps) => {
   };
 
   return (
-    <div draggable className="flex mb-2 p-2 shadow-md justify-between w-90 h-20">
+    <div
+      draggable
+      className="flex mb-2 p-2 shadow-md justify-between w-90 h-20"
+    >
       <div className="flex items-center gap-3 w-64">
-        <img
-          className="shadow-md"
-          width={50}
-          height={50}
-          src={image.url}
-          alt={image.name}
-        />
+        <div className="shadow-md overflow-hidden align-middle" style={{width: 50 , height:50}}>
+          <img
+            width={50}
+            height={50}
+            src={image.url}
+            alt={image.name}
+          />
+        </div>
         <p className="text-sm truncate">{image.name}</p>
       </div>
       <IconButton onClick={handleRemove} className="absolute">
