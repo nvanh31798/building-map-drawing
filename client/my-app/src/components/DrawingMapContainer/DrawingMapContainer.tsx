@@ -15,7 +15,7 @@ const DrawingMapContainer = () => {
 
   const handleOnWheel = (evt: WheelEvent) => {
     const isWheelUp = evt.deltaY > 0;
-    const scaleValue = isWheelUp ? 0.1 : -0.1;
+    const scaleValue = isWheelUp ? -0.1 : 0.1;
 
     setStageScale((prevScale) => prevScale + scaleValue);
   };
