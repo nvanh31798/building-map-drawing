@@ -19,7 +19,7 @@ export const ImageListItem = ({ image }: ImageListItemProps) => {
       className="flex mb-2 p-2 shadow-md justify-between w-90 h-20"
     >
       <div className="flex items-center gap-3 w-64">
-        <div className="shadow-md overflow-hidden align-middle" style={{width: 50 , height:50}}>
+        <div className="overflow-hidden content-center" style={{width: 50 , height:50}}>
           <img
             width={50}
             height={50}
