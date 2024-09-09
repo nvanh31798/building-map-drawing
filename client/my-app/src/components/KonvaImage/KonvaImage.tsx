@@ -83,12 +83,12 @@ export const KonvaImage = ({
         height={Math.round((image?.height ?? 0) / scale)}
         draggable
         image={image}
-        crop={{
-          x: cropRect.x * scale,
-          y: cropRect.y * scale,
-          width: cropRect.width * scale,
-          height: cropRect.height * scale,
-        }}
+        // crop={{
+        //   x: cropRect.x * scale,
+        //   y: cropRect.y * scale,
+        //   width: cropRect.width * scale,
+        //   height: cropRect.height * scale,
+        // }}
       />
     )}
     {/* Crop Selection Rectangle */}
