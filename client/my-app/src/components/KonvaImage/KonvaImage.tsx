@@ -1,6 +1,7 @@
 import { Image } from "react-konva";
 import useImage from "use-image";
 import { useKonvaImage } from "../../hooks/useKonvaImage";
+import { useState } from "react";
 
 interface KonvaImageProps {
   url: string;
@@ -18,17 +19,19 @@ export const KonvaImage = ({
   width = 500,
 }: KonvaImageProps) => {
   const [image] = useImage(url, "anonymous");
-
+  const [active, setActive] = useState(false);
   const { calculateImageScale } = useKonvaImage();
 
   const scale = calculateImageScale(image?.height, image?.width, height, width);
 
   const handleClick = () => {
+    setActive(!active);
     onClick?.();
   };
 
   return (
     <>
+      {active && <div className="p-2 border-2"></div>}
       {image && (
         <Image
           id={id}
