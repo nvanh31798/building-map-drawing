@@ -83,7 +83,6 @@ export const KonvaImage = ({
 
   return (
     <>
-      {active && <div className="p-2 border-2"></div>}
       {image && (
         <>
           <Image
@@ -98,34 +97,7 @@ export const KonvaImage = ({
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
-          />
-          {/* Draw a rectangle to represent the cropping area */}
-          {/* <Rect
-            ref={cropRectRef}
-            x={crop.x}
-            y={crop.y}
-            width={crop.width}
-            height={crop.height}
-            stroke="red"
-            draggable
-            onTransformEnd={handleTransform}
-            onDragEnd={handleTransform}
-          /> */}
-          {/* Transformer to handle resizing and rotating */}
-          {active && (
-            <Transformer
-              ref={trRef}
-              rotateEnabled={false}
-              keepRatio={false}
-              boundBoxFunc={(oldBox, newBox) => {
-                // Limit resizing to avoid negative width or height
-                if (newBox.width < 1 || newBox.height < 1) {
-                  return oldBox;
-                }
-                return newBox;
-              }}
-            />
-          )}
+          />          
         </>
       )}
     </>
